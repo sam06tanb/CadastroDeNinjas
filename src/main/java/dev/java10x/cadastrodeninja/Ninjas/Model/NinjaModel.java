@@ -14,12 +14,17 @@ import lombok.NoArgsConstructor;
 public class NinjaModel {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "nome")
     private String nome;
 
     @Column(unique = true)
     private String email;
+
+    @Column(name = "idade")
     private int idade;
 
     @ManyToOne //muitos ninjas podem estar na mesma missao
