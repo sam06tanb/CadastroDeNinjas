@@ -1,16 +1,28 @@
 package dev.java10x.cadastrodeninja.Missoes.Controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/missoes")
 public class MissoesController {
 
-    @GetMapping("/Missoes")
-    public void Missoes() {
-        System.out.println("Cadastro de missoes");
+    @GetMapping("/mostrar")
+    public String mostrar(){
+        return "Mostrando missoes";
     }
 
+    @PostMapping("/criar")
+    public String criarMissao() {
+        return "Missao";
+    }
+
+    @PutMapping("/alterar")
+    public String alterarMissao() {
+        return "Alterar";
+    }
+
+    @DeleteMapping("/deletar")
+    public String deletarMissao() {
+        return "Deletar";
+    }
 }
