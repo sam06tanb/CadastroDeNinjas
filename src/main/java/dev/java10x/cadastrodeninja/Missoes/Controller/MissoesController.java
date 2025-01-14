@@ -2,6 +2,7 @@ package dev.java10x.cadastrodeninja.Missoes.Controller;
 
 import dev.java10x.cadastrodeninja.Missoes.Model.MissoesModel;
 import dev.java10x.cadastrodeninja.Missoes.Service.MissoesService;
+import dev.java10x.cadastrodeninja.Ninjas.Model.NinjaModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,18 +28,18 @@ public class MissoesController {
         return missoesService.mostrarPorID(id);
     }
 
-    @PostMapping("/criar")
-    public String criarMissao() {
-        return "Missao";
+    @PostMapping("/criarMissao")
+    public MissoesModel adicionarMissao(@RequestBody MissoesModel missao) {
+        return missoesService.adicionarMissao(missao);
     }
 
-    @PutMapping("/alterar")
-    public String alterarMissao() {
-        return "Alterar";
+    @PutMapping("/alterarMissao/{id}")
+    public MissoesModel alterarMissaoID(@PathVariable Long id, @RequestBody MissoesModel missao) {
+        return missoesService.atualizarMissao(id, missao);
     }
 
-    @DeleteMapping("/deletar")
-    public String deletarMissao() {
-        return "Deletar";
+    @DeleteMapping("/deletarMissao/{id}")
+    public void DeletarMissaoID(@PathVariable Long id) {
+        missoesService.deleteMissionById(id);
     }
 }
