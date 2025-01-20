@@ -1,4 +1,4 @@
-package dev.java10x.cadastrodeninja.Ninjas;
+package dev.java10x.cadastrodeninja.Ninjas.DTOMAPPER;
 
 import dev.java10x.cadastrodeninja.Ninjas.Model.NinjaModel;
 import org.springframework.stereotype.Component;

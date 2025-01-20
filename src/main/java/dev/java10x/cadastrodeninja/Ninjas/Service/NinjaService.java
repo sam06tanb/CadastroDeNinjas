@@ -1,8 +1,8 @@
 package dev.java10x.cadastrodeninja.Ninjas.Service;
 
 import dev.java10x.cadastrodeninja.Ninjas.Model.NinjaModel;
-import dev.java10x.cadastrodeninja.Ninjas.NinjaDTO;
-import dev.java10x.cadastrodeninja.Ninjas.NinjaMAPPER;
+import dev.java10x.cadastrodeninja.Ninjas.DTOMAPPER.NinjaDTO;
+import dev.java10x.cadastrodeninja.Ninjas.DTOMAPPER.NinjaMAPPER;
 import dev.java10x.cadastrodeninja.Ninjas.Repository.NinjaRepository;
 import org.springframework.stereotype.Service;
 

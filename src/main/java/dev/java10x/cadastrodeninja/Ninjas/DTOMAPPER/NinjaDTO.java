@@ -1,4 +1,4 @@
-package dev.java10x.cadastrodeninja.Ninjas;
+package dev.java10x.cadastrodeninja.Ninjas.DTOMAPPER;
 import dev.java10x.cadastrodeninja.Missoes.Model.MissoesModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;

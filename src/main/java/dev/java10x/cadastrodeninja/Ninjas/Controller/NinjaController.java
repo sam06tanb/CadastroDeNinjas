@@ -1,7 +1,6 @@
 package dev.java10x.cadastrodeninja.Ninjas.Controller;
 
-import dev.java10x.cadastrodeninja.Ninjas.Model.NinjaModel;
-import dev.java10x.cadastrodeninja.Ninjas.NinjaDTO;
+import dev.java10x.cadastrodeninja.Ninjas.DTOMAPPER.NinjaDTO;
 import dev.java10x.cadastrodeninja.Ninjas.Service.NinjaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
