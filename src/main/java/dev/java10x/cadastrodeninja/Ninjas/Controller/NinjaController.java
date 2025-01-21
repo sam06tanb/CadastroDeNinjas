@@ -60,7 +60,7 @@ public class NinjaController {
             return ResponseEntity.ok("Ninja deletado com sucesso: " + id);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("O ninja com o ID " + id + "nao encontrado");
+                    .body("O ninja com o ID " + id + "nao foi encontrado");
         }
     }
 
