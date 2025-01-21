@@ -1,46 +1,58 @@
 package dev.java10x.cadastrodeninja.Missoes.Service;
 
+import dev.java10x.cadastrodeninja.Missoes.DTOMAPPERMISSOES.MissoesDTO;
+import dev.java10x.cadastrodeninja.Missoes.DTOMAPPERMISSOES.MissoesMAPPER;
 import dev.java10x.cadastrodeninja.Missoes.Model.MissoesModel;
 import dev.java10x.cadastrodeninja.Missoes.Repository.MissoesRepository;
-import dev.java10x.cadastrodeninja.Ninjas.Model.NinjaModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MissoesService {
 
+
     private MissoesRepository missoesRepository;
+    private MissoesMAPPER missoesMAPPER;
 
     public MissoesService(MissoesRepository missoesRepository) {
         this.missoesRepository = missoesRepository;
+        this.missoesMAPPER = new MissoesMAPPER();
+
     }
 
-    public List<MissoesModel> mostrar() {
-        return missoesRepository.findAll();
+    public List<MissoesDTO> mostrar() {
+         List<MissoesModel> missoes = missoesRepository.findAll();
+         return missoes.stream()
+                 .map(missoesMAPPER::map)
+                 .collect(Collectors.toList());
     }
 
-    public MissoesModel mostrarPorID(Long id) {
+    public MissoesDTO mostrarPorID(Long id) {
         Optional<MissoesModel> MostrarPorID = missoesRepository.findById(id);
-        return MostrarPorID.orElse(null);
+        return MostrarPorID.map(missoesMAPPER::map).orElse(null);
     }
 
-    public MissoesModel adicionarMissao(MissoesModel missao) {
-        return missoesRepository.save(missao);
+    public MissoesDTO adicionarMissao(MissoesDTO missaoDTO) {
+        MissoesModel missoes = missoesMAPPER.map(missaoDTO);
+        missoes = missoesRepository.save(missoes);
+        return missoesMAPPER.map(missoes);
     }
 
     public void deleteMissionById(Long id) {
         missoesRepository.deleteById(id);
     }
 
-    public MissoesModel atualizarMissao(Long id, MissoesModel missao) {
-        if (missoesRepository.existsById(id)) {
-            missao.setId(id);
-            return missoesRepository.save(missao);
+    public MissoesDTO atualizarMissao(Long id, MissoesDTO missaoDTO) {
+        Optional<MissoesModel> missoes = missoesRepository.findById(id);
+        if (missoes.isPresent()) {
+            MissoesModel missaoAtualizada = missoesMAPPER.map(missaoDTO);
+            missaoAtualizada.setId(id);
+            MissoesModel missaoSalva = missoesRepository.save(missaoAtualizada) ;
+            return missoesMAPPER.map(missaoSalva);
         }
         return null;
-
-
     }
 }
