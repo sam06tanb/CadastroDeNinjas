@@ -2,6 +2,9 @@ package dev.java10x.cadastrodeninja.Ninjas.Controller;
 
 import dev.java10x.cadastrodeninja.Ninjas.DTOMAPPER.NinjaDTO;
 import dev.java10x.cadastrodeninja.Ninjas.Service.NinjaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,10 @@ public class NinjaController {
     private NinjaService ninjaService;
 
     @PostMapping("/criar")
+    @Operation(summary = "Criar Ninjas", description = "Essa rota cria ninjas")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Ninja criado com sucesso: {nome do ninja} {ID do ninja}")
+    })
     public ResponseEntity<String> adicionarNinja(@RequestBody NinjaDTO ninja) {
         NinjaDTO novoNinja = ninjaService.adicionarNinja(ninja);
         return ResponseEntity.status(HttpStatus.CREATED)
